@@ -11,23 +11,24 @@ namespace XfEffects.iOS.Effects
 {
     public class ImageButtonTintEffect : PlatformEffect
     {
-        protected override void OnAttached() => UpdateTint();
+        protected override void OnAttached() => UpdateTintColor();
 
         protected override void OnDetached()
         {
 
         }
 
+
         protected override void OnElementPropertyChanged(PropertyChangedEventArgs args)
         {
             if (args.PropertyName == XfEffects.Effects.ImageButtonTintEffectExtensions.TintColorProperty.PropertyName)
             {
-                UpdateTint();
+                UpdateTintColor();
             }
         }
 
 
-        private void UpdateTint()
+        private void UpdateTintColor()
         {
             try
             {
@@ -37,6 +38,7 @@ namespace XfEffects.iOS.Effects
                     {
                         var templatedImg = imagebutton.CurrentImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
 
+                        //clear the image on the button
                         imagebutton.SetImage(null, UIControlState.Normal);
 
                         imagebutton.ImageView.TintColor = XfEffects.Effects.ImageButtonTintEffectExtensions.GetTintColor(this.Element).ToUIColor();

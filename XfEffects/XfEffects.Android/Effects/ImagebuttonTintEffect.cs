@@ -13,12 +13,12 @@ namespace XfEffects.Droid.Effects
 {
     public class ImageButtonTintEffect : PlatformEffect
     {
-        static readonly int[][] _colorStates =
-        {
-            new[] { global::Android.Resource.Attribute.StateEnabled },
-            new[] { -global::Android.Resource.Attribute.StateEnabled },
-            new[] { -global::Android.Resource.Attribute.StatePressed }
-        };
+static readonly int[][] _colorStates =
+{
+    new[] { global::Android.Resource.Attribute.StateEnabled },
+    new[] { -global::Android.Resource.Attribute.StateEnabled }, //disabled state
+    new[] { global::Android.Resource.Attribute.StatePressed } //pressed state
+};
 
         protected override void OnAttached()
         {
@@ -29,6 +29,7 @@ namespace XfEffects.Droid.Effects
         {
 
         }
+
 
         private void UpdateTintColor()
         {
