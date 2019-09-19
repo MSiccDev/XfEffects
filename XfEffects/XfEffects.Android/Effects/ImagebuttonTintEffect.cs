@@ -30,6 +30,14 @@ static readonly int[][] _colorStates =
 
         }
 
+        protected override void OnElementPropertyChanged(PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == XfEffects.Effects.ImageButtonTintEffectExtensions.TintColorProperty.PropertyName)
+                UpdateTintColor();
+
+            if (args.PropertyName == ImageButton.SourceProperty.PropertyName)
+                UpdateTintColor();
+        }
 
         private void UpdateTintColor()
         {
@@ -56,10 +64,6 @@ static readonly int[][] _colorStates =
             }
         }
 
-        protected override void OnElementPropertyChanged(PropertyChangedEventArgs args)
-        {
-            if (args.PropertyName == XfEffects.Effects.ImageButtonTintEffectExtensions.TintColorProperty.PropertyName)
-                UpdateTintColor();
-        }
+
     }
 }

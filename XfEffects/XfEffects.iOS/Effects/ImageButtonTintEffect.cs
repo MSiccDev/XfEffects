@@ -22,9 +22,10 @@ namespace XfEffects.iOS.Effects
         protected override void OnElementPropertyChanged(PropertyChangedEventArgs args)
         {
             if (args.PropertyName == XfEffects.Effects.ImageButtonTintEffectExtensions.TintColorProperty.PropertyName)
-            {
                 UpdateTintColor();
-            }
+
+            if (args.PropertyName == ImageButton.SourceProperty.PropertyName)
+                UpdateTintColor();
         }
 
 
