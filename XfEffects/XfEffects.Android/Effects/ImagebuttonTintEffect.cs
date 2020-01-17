@@ -6,19 +6,25 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using AWImageButton = Android.Support.V7.Widget.AppCompatImageButton;
 
-[assembly: ResolutionGroupName("XfEffects")]
+//[assembly: ResolutionGroupName("XfEffects")]
 [assembly: ExportEffect(typeof(XfEffects.Droid.Effects.ImageButtonTintEffect), nameof(XfEffects.Effects.ImageButtonTintEffect))]
 
 namespace XfEffects.Droid.Effects
 {
     public class ImageButtonTintEffect : PlatformEffect
     {
-static readonly int[][] _colorStates =
+        #region Private Fields
+
+        private static readonly int[][] _colorStates =
 {
     new[] { global::Android.Resource.Attribute.StateEnabled },
     new[] { -global::Android.Resource.Attribute.StateEnabled }, //disabled state
     new[] { global::Android.Resource.Attribute.StatePressed } //pressed state
 };
+
+        #endregion Private Fields
+
+        #region Protected Methods
 
         protected override void OnAttached()
         {
@@ -27,17 +33,20 @@ static readonly int[][] _colorStates =
 
         protected override void OnDetached()
         {
-
         }
 
         protected override void OnElementPropertyChanged(PropertyChangedEventArgs args)
         {
-            if (args.PropertyName == XfEffects.Effects.ImageButtonTintEffectExtensions.TintColorProperty.PropertyName)
+            if (args.PropertyName == XfEffects.Effects.ImageButtonTintEffectParameters.TintColorProperty.PropertyName)
                 UpdateTintColor();
 
             if (args.PropertyName == ImageButton.SourceProperty.PropertyName)
                 UpdateTintColor();
         }
+
+        #endregion Protected Methods
+
+        #region Private Methods
 
         private void UpdateTintColor()
         {
@@ -45,7 +54,7 @@ static readonly int[][] _colorStates =
             {
                 if (this.Control is AWImageButton imageButton)
                 {
-                    var androidColor = XfEffects.Effects.ImageButtonTintEffectExtensions.GetTintColor(this.Element).ToAndroid();
+                    var androidColor = XfEffects.Effects.ImageButtonTintEffectParameters.GetTintColor(this.Element).ToAndroid();
 
                     var disabledColor = androidColor;
                     disabledColor.A = 0x1C; //140
@@ -64,6 +73,6 @@ static readonly int[][] _colorStates =
             }
         }
 
-
+        #endregion Private Methods
     }
 }
